@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "baseUrl": "."
+    // "paths": {
+    //   "@lib/*": ["./src/lib/*"],
+    //   "@controllers/*": ["./src/controllers/*"],
+    //   "@routes/*": ["./src/routes/*"],
+    //   "@models/*": ["./src/models/*"],
+    //   "@services/*": ["./src/services/*"]
+    // }
+  },
+  "include": ["src/**/*.js", "src/**/*.json"],
+  "exclude": ["node_modules", "dist"]
+}

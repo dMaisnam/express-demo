@@ -1,0 +1,27 @@
+{
+  "name": "express-demo",
+  "version": "1.0.0",
+  "description": "A simple demo of CRUD operations with Express JS",
+  "main": "./server.js",
+  "author": "Deba Maisnam",
+  "license": "ISC",
+  "private": false,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dMaisnam/express-demo"
+  },
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "lowdb": "^1.0.0",
+    "nanoid": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
