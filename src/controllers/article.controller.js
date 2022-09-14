@@ -1,4 +1,3 @@
-import { connect } from "../lib/db.js"
 import { 
   fetchAllArticles, 
   fetchArticleById, 
@@ -7,20 +6,20 @@ import {
   removeArticle
 } from "../services/article.service.js"
 
-const getArticles = (_req, res) => {
+const getArticles = async (_req, res) => {
   res.setHeader("Content-Type", "application/json")
   try {
-    const articles = fetchAllArticles()
+    const articles = await fetchAllArticles()
     res.status(200).json({ success: true, data: articles })
   } catch (err) {
     return res.status(500).json({ message: `Something went wrong : ${err}` })
   }
 }
 
-const getArticle = (req, res) => {
+const getArticle = async (req, res) => {
   res.setHeader("Content-Type", "application/json")
   try {
-    const article = fetchArticleById(req.params.id)
+    const article = await fetchArticleById(req.params.id)
     if (!article) return res.status(404).json({ message: 'Article not found' })
     res.status(200).json({ success: true, data: article })
   } catch (err) {
@@ -28,21 +27,21 @@ const getArticle = (req, res) => {
   }
 }
 
-const postArticle = (req, res) => {
+const postArticle = async (req, res) => {
   res.setHeader("Content-Type", "application/json")
   try {
     const body = req.body
-    const newArticle = createNewArticle(body)
+    const newArticle = await createNewArticle(body)
     res.status(201).json({ success: true, data: newArticle })
   } catch (err) {
     return res.status(500).json({ message: `Something went wrong : ${err}` })
   }
 }
 
-const putArticle = (req, res) => {
+const putArticle = async (req, res) => {
   res.setHeader("Content-Type", "application/json")
   try {
-    const article = fetchArticleById(req.params.id)
+    const article = await fetchArticleById(req.params.id)
     if (!article) return res.status(404).json({ message: 'Article not found' })
     
     const updated = updateArticle(req.params.id, req.body)
@@ -52,10 +51,10 @@ const putArticle = (req, res) => {
   }
 }
 
-const deleteArticle = (req, res) => {
+const deleteArticle = async (req, res) => {
   res.setHeader("Content-Type", "application/json")
   try {
-    const article = fetchArticleById(req.params.id)
+    const article = await fetchArticleById(req.params.id)
     if (!article) return res.status(404).json({ message: 'Article not found' })
     
     removeArticle(req.params.id)

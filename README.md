@@ -30,7 +30,7 @@ git clone https://github.com/dMaisnam/express-demo.git
 ```
 - Go to project directory
 ```bash
-mkdir express-demo
+cd express-demo
 ```
 - Install dependencies
 ```bash
@@ -47,7 +47,7 @@ npm run start
 ```
 
 ##### Available endpoints 
-- GET     `/_check`      - Check server status
+- GET     `/_check`           - Check server status
 - GET     `/v1/articles`      - Get all articles
 - POST    `/v1/articles`      - Create new article
 - GET     `/v1/articles/:id`  - Get article by id
@@ -67,6 +67,7 @@ npm run start
   title: string,
   excerpt: string,
   created: string
+  updated: string
 }
 ```
 
