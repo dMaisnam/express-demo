@@ -5,12 +5,12 @@ import {
   getArticle, 
   postArticle,
   putArticle 
-} from "../controllers/article.controller.js"
+} from "../controllers/article.controller"
 import { 
   postArticleSchema, 
   putArticleSchema 
-} from "../schema/article.schema.js"
-import validate from "../middlewares/validate.js"
+} from "../schema/article.schema"
+import validate from "../middlewares/validate"
 
 const router = Router()
 

@@ -1,12 +1,13 @@
+import { Handler, Request, Response } from "express"
 import { 
   fetchAllArticles, 
   fetchArticleById, 
   createNewArticle, 
   updateArticle, 
   removeArticle
-} from "../services/article.service.js"
+} from "../services/article.service"
 
-const getArticles = async (_req, res) => {
+const getArticles: Handler = async (_req: Request, res: Response) => {
   res.setHeader("Content-Type", "application/json")
   try {
     const articles = await fetchAllArticles()
@@ -16,7 +17,7 @@ const getArticles = async (_req, res) => {
   }
 }
 
-const getArticle = async (req, res) => {
+const getArticle: Handler = async (req: Request, res: Response) => {
   res.setHeader("Content-Type", "application/json")
   try {
     const article = await fetchArticleById(req.params.id)
@@ -27,7 +28,7 @@ const getArticle = async (req, res) => {
   }
 }
 
-const postArticle = async (req, res) => {
+const postArticle: Handler = async (req: Request, res: Response) => {
   res.setHeader("Content-Type", "application/json")
   try {
     const body = req.body
@@ -38,7 +39,7 @@ const postArticle = async (req, res) => {
   }
 }
 
-const putArticle = async (req, res) => {
+const putArticle: Handler = async (req: Request, res: Response) => {
   res.setHeader("Content-Type", "application/json")
   try {
     const article = await fetchArticleById(req.params.id)
@@ -51,7 +52,7 @@ const putArticle = async (req, res) => {
   }
 }
 
-const deleteArticle = async (req, res) => {
+const deleteArticle: Handler = async (req: Request, res: Response) => {
   res.setHeader("Content-Type", "application/json")
   try {
     const article = await fetchArticleById(req.params.id)

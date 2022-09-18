@@ -66,7 +66,7 @@ npm run start
   id: string,
   title: string,
   excerpt: string,
-  created: string
+  created: string,
   updated: string
 }
 ```
