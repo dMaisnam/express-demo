@@ -1,6 +1,6 @@
 <section align="center">
   <h1>Express CRUD demo</h1>
-  <p>A demonstration of CRUD operations with <code style="color: blue;">express</code> and <code style="color: blue;">lowdb</code></p>
+  <p>A demonstration of CRUD operations with <code style="color: blue;">Express</code> and <code style="color: blue;">Prisma</code></p>
   <div>
     <img 
       src="https://img.shields.io/github/issues/dMaisnam/express-demo" 
@@ -21,60 +21,79 @@
   </div>
 </section>
 
-##### This project is meant for demonstration and teaching purposes and not ideal for real world applications
-
-##### How to run in local environment
+#### How to run in local environment
 - Clone project
-```bash
+```sh
 git clone https://github.com/dMaisnam/express-demo.git
 ```
 - Go to project directory
-```bash
+```sh
 cd express-demo
 ```
 - Install dependencies
-```bash
+```sh
 npm install
 # If you use yarn
 yarn install
 ```
+- Create a file called `.env` in your project root and define the `DATABASE_URL` below to the file
+```sh
+echo DATABASE_URL="file:./dev.db" > .env
+```
+- Apply migrations
+```sh
+npx prisma db pull
+```
 - Run server
-```bash
+```sh
 # In development
 npm run dev
 # in production
 npm run start
 ```
 
-##### Available endpoints 
-- GET     `/_check`           - Check server status
-- GET     `/v1/articles`      - Get all articles
-- POST    `/v1/articles`      - Create new article
-- GET     `/v1/articles/:id`  - Get article by id
-- PUT     `/v1/articles/:id`  - Update article by id
-- DELETE  `/v1/articles/:id`  - Delete article by id
+#### Available endpoints 
+API_URL = http://127.0.0.1:3001
+- GET     `{{API_URL}}/api/v1/_check`        - Check server status
+- GET     `{{API_URL}}/api/v1/todos`      - Get all todos
+- POST    `{{API_URL}}/api/v1/todos`      - Create new todo
+- GET     `{{API_URL}}/api/v1/todos/:id`  - Get todo by id
+- PUT     `{{API_URL}}/api/v1/todos/:id`  - Update todo by id
+- DELETE  `{{API_URL}}/api/v1/todos/:id`  - Delete todo by id
 
-##### Data schemas
-```js
-// Request
+#### Data schemas
+##### Request
+```json
 {
-  title: string,
-  excerpt: string
+  "title": string,
+  "completed": boolean
 }
-// Response
+```
+##### Response
+```json
 {
-  id: string,
-  title: string,
-  excerpt: string,
-  created: string,
-  updated: string
+  "success": boolean,
+  "data": {
+    "id": string,
+    "title": string,
+    "completed": boolean,
+    "created": string,
+  }
 }
 ```
 
-##### Notes
-- The project uses `lowdb` version 1 for a reason. The current version does not support `PUT` and `DELETE` requests
-- The "type" is set as "module" in `package.json` due to some issues. So your imports will have to include the file extensions when importing files
-- The project also uses ES6 for easier conversion to TypeScript in the future
-- Ideally the json file serving as the database should be replaced with a real database
+#### Notes
+```sh
+# Get all
+curl http://127.0.0.1:3001/api/v1/todos
+# Get by id
+curl http://127.0.0.1:3001/api/v1/todos/:id
+# Post
+curl -X POST -H "Content-Type:application/json" --data "{\"title\": \"Your title\", \"completed\": false}" http://127.0.0.1:3001/api/v1/todos
+# Put by id
+curl -X PUT -H "Content-Type:application/json" --data "{\"title\": \"Your title updated\", \"completed\": true}" http://127.0.0.1:3001/api/v1/todos/:id
+# Delete by id
+curl -X DELETE http://127.0.0.1:3001/api/v1/todos/:id
+```
 
 Created by [Deba Maisnam](https://twitter.com/debamaisnam) :link:

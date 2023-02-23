@@ -1,18 +1,18 @@
-import express, { Express, Request, Response } from "express"
-import cors from "cors"
+import express, { Express } from "express";
+import cors from "cors";
 
-import articleRouter from "./src/routes/article.router"
-import { HOST, PORT } from "./src/lib/constants"
+import AppRouter from "./src/routes";
+import { HOST, PORT } from "./src/lib/constants";
 
-const app: Express = express()
+const app: Express = express();
 
 // Middlewares
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-app.use("/_check", (_req: Request, res: Response) => res.status(200).send("Server status: OK 👍"))
+app.use("/api/v1", AppRouter);
 
-app.use("/v1/articles", articleRouter)
-
-app.listen(PORT, HOST, () => console.log(`Server running on port http://${HOST}:${PORT}`))
+app.listen(PORT, HOST, () =>
+  console.log(`Server running on port http://${HOST}:${PORT}`)
+);
